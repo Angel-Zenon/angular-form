@@ -1,0 +1,10 @@
+<form (submit)="onSubmit($event)">
+    <label for="mail">Email</label>
+    <input type="email" id="mail" [formField]="loginForm.email" />
+    <label for="pw">Password</label>
+    <input type="password" id="pw" [formField]="loginForm.password" />
+    <hr>
+    <p>Email {{ loginForm.email().value() }} </p>
+    <p>Password length {{ loginForm.password().value().length }} </p>
+    <button type="submit">Send</button>
+</form>

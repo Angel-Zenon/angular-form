@@ -1,0 +1,59 @@
+<div class="form-container">
+    <form (submit)="onSubmit($event)">
+
+        <div>
+            <label>
+                Name
+                <input type="text" id="name" [formField]="registerForm.name">
+            </label>
+    
+            @if (registerForm.name().touched() && registerForm.name().invalid()){
+                <!-- Si ya se preciono sobre el input y es invalido el campo -->
+                <ul class="error-list">
+                    @for (error of registerForm.name().errors(); track error) {
+                        <!-- Mostramos el error en el LI -->
+                        <li> {{ error.message }} </li> 
+                    }
+                </ul>
+            } 
+        </div>
+
+        <div>
+            <label>
+                LastName
+                <input type="text" id="lastname" [formField]="registerForm.lastname" >
+            </label>
+    
+            <label>
+                Email
+                <input type="email" id="mail" [formField]="registerForm.email" >
+                @if (registerForm.email().touched() && registerForm.email().invalid()){
+                <!-- Si ya se preciono sobre el input y es invalido el campo -->
+                <ul class="error-list">
+                    @for (error of registerForm.email().errors(); track error) {
+                        <!-- Mostramos el error en el LI -->
+                        <li> {{ error.message }} </li> 
+                    }
+                </ul>
+            } 
+            </label>
+        </div>
+        <div>
+            <label>
+                Age
+                <input type="number" id="age" [formField]="registerForm.age" >
+                @if (registerForm.age().touched() && registerForm.age().invalid()){
+                <!-- Si ya se preciono sobre el input y es invalido el campo -->
+                <ul class="error-list">
+                    @for (error of registerForm.age().errors(); track error) {
+                        <!-- Mostramos el error en el LI -->
+                        <li> {{ error.message }} </li> 
+                    }
+                </ul>
+            } 
+            </label>            
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
