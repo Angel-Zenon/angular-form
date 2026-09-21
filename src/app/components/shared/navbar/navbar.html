@@ -1,0 +1,13 @@
+<nav>
+    <span>
+        <img src="/public/favicon.ico"  alt="IconLogo">
+    </span>
+    <span class="btn-ham">
+        <img src="" alt="">
+    </span>
+    <ul>
+        <li><a routerLink="/" [routerLinkActive]="['active-link']" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a routerLink="/login"  [routerLinkActive]="['active-link']" >Sign In</a></li>
+        <li><a routerLink="/register" [routerLinkActive]="['active-link']" >Register</a></li>
+    </ul>
+</nav>

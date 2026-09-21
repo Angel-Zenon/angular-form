@@ -18,6 +18,11 @@ export const routes: Routes = [
     {
         path :  'register',
         component : FormRegisterComponent
+    },
+
+    {
+        path : '**',
+        redirectTo : '/'
     }
 
     // /404 => PageNotFoundComponent
