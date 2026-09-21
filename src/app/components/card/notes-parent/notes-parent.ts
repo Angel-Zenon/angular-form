@@ -7,6 +7,7 @@ import { NoteCard } from '../note-card/note-card';
   selector: 'notes-parent',
   imports: [FormField, NoteCard],
   templateUrl: './notes-parent.html',
+  styleUrl : './notes-parent.css'
 })
 export class NotesParent {
   notes = signal<Note[]>([]);
