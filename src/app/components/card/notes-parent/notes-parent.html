@@ -1,0 +1,24 @@
+<div class="notes-form-container">
+    <form (submit)="onSubmit($event)">
+        <label> Descripcion de la nota
+            <input 
+            type="text" 
+            
+            [formField]="registerForm.description"
+            id="">
+        </label>
+        <label> Seleccione una prioridad
+            <select  id="" [formField]="registerForm.priority" >
+                <option value="">Selecciona un valor</option>
+                
+                @for (priority of priorities; track priority) {
+                    <option [value]="priority"> {{ priority }} </option>
+                } 
+            </select>
+        </label>
+    
+        <button type="submit">Agregar</button>
+    </form>
+    <hr>
+    <note-card [notes]="notes()" />
+</div>

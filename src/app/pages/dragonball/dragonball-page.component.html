@@ -1,0 +1,41 @@
+
+    <h1>DragonBall Page</h1>
+    <hr>
+    <div class="flex ">
+            <div class="border-1 border-black flex-1 flex flex-col gap-4">
+                <h3>Agregar {{ name() }} </h3>
+                <input 
+                type="text" 
+                placeholder="Nombre" 
+                [value]="name()"
+                (change)="setName(txtname.value)"
+                #txtname
+                class="">
+
+                <input type="number" 
+                placeholder="Poder" 
+                [value]="power()"
+                (change)="setPower(+txtpower.value)"
+                #txtpower
+                class="">
+                <button (click)="addCharacter()" class="bg-sky-500 hover:bg-sky-700 py-3 rounded-md mr-10 ml-10">Agregar</button>
+            </div>
+    
+        <div class="flex-1">
+            <h3 class="text-xl font-bold text-blue-600/100 dark:text-sky-400/100" >Listado</h3>
+            <ol>
+                @for(character of characters() ; track  character.id) { 
+                    <li>
+                        <span>{{ character.name }} </span>
+                        @if (character.power > 9000) {
+                            <strong class="text-red-600"> {{ character.power }} </strong>
+                        } @else {
+
+                            <strong class="text-emerald-700"> {{ character.power }} </strong>
+                        }
+                    </li>
+                }
+            </ol>
+        </div>
+
+    </div>

@@ -1,0 +1,32 @@
+<style>
+    nav {
+        display: flex;
+        justify-content: space-around;
+        color: #fff;
+        background-color: #212211;
+        padding: 10px;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    nav a.active {
+        color: red;
+        text-decoration: underline;
+    }
+
+</style>
+
+<nav>
+    <a routerLink="/" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact : true }"
+    >Notas</a> <!--ROUTERLINK NOS DIRIJE A LA PAGINA SIN HACER UN REFRESH-->
+    <!-- [routerLinkActiveOptions]="{ exact : true }" para que cuando la ruta sea exactamente o el routerLink -->
+    <!-- Para asociarlo a un valor de una señal -->
+    <a [routerLink]="['/cart']" [routerLinkActive]="'active'">Carrito</a>
+    <a routerLink="/hero" routerLinkActive="active">Hero</a>
+    <a [routerLink]="['/dragonball']" [routerLinkActive]="'active'">DragonBall</a>
+    <a [routerLink]="['/dragonball-super']" [routerLinkActive]="'active'">DragonBall Super</a>
+</nav>

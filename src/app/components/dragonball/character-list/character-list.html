@@ -1,0 +1,14 @@
+
+<h3 class="text-xl font-bold text-blue-600/100 dark:text-sky-400/100" >Listado</h3>
+    <ol>
+        @for(character of characters() ; track  character.id) {
+            <li>
+                <span>{{ character.name }} </span>
+                @if (character.power > 9000) {
+                    <strong class="text-red-600"> {{ character.power }} </strong>
+                } @else {
+                    <strong class="text-emerald-700"> {{ character.power }} </strong>
+                }
+            </li>
+                        }
+    </ol>

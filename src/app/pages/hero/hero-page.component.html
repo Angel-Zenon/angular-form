@@ -1,0 +1,25 @@
+<div class="container">
+
+    <h2 class="text-2xl font-bold"> {{ name() }} </h2>
+    <dl>
+        <td>NOMBRE</td> <!--clave-->
+        <dd> {{ name() }} </dd> <!--valor-->
+    
+        <td>Edad</td>
+        <dd></dd>
+    
+        <td>Descripcion</td>
+        <dd> {{ heroDescription() }} </dd>
+    
+        <td>Capitalizado</td>
+        <!-- <dd> {{ capitalizedName() }} </dd> -->
+        <dd> {{ name() | uppercase }} </dd>
+    </dl>
+    
+    <div class="flex gap-8">
+    
+        <button (click)="setName()" class="bg-sky-500 hover:bg-sky-700 flex-1 p-3 rounded-md">Cambiar nombre</button>
+        <button (click)="setAge()" class="bg-violet-500 hover:bg-violet-600 focus:outline-2 focus:outline-offset-2 focus:outline-violet-500 active:bg-violet-700 flex-1 text-white rounded-md">Cambiar edad</button>
+        <button (click)="reset()" class="bg-red-500 hover:bg-red-600 focus:outline-2 focus:outline-offset-2 focus:outline-red-500 active:bg-red-700 flex-1 text-white rounded-md">Resetear</button>
+    </div>
+</div>

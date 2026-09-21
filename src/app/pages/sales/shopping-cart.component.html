@@ -1,0 +1,126 @@
+<div class="min-h-screen bg-slate-900 text-slate-100 p-6 md:p-10 flex justify-center items-start">
+  <div class="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-3 gap-8">
+    
+    <!-- Columna Izquierda: Listado de Productos -->
+    <section class="lg:col-span-2 space-y-4">
+        <header class="border-b border-slate-800 pb-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight">Carrito de Compras</h1>
+            <span class="text-sm font-medium text-slate-400">
+                Artículos en bolsa {{ products().length }}
+            </span>
+        </header>
+
+        <div class="space-y-3">
+            @for (product of products(); track $index) {
+                <article class="flex items-center justify-between bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 transition-colors hover:border-slate-600">
+                    <div class="space-y-1">
+                        <h2 class="font-semibold text-slate-200"> {{ product.name }} </h2>
+                        <p class="text-sm text-slate-400 font-mono">  {{ product.price }} </p>
+                    </div>
+    
+                    <div class="flex items-center gap-4">
+                        <!-- Selector de Cantidad -->
+                        <div class="flex items-center bg-slate-950 border border-slate-700 rounded-lg p-1">
+                        <button (click)="decreaseProductUnity(product)"
+                            type="button"
+                            class="w-7 h-7 flex items-center justify-center rounded bg-slate-800 text-slate-300 hover:bg-slate-700 active:scale-95 transition">
+                            -
+                        </button>
+                        <span class="w-10 text-center font-mono text-sm font-semibold">
+                            {{product.quantity}}
+                        </span>
+                        <button (click)="addProductUnity(product)"
+                            type="button"
+                            class="w-7 h-7 flex items-center justify-center rounded bg-slate-800 text-slate-300 hover:bg-slate-700 active:scale-95 transition">
+                            +
+                        </button>
+                        </div>
+    
+                        <!-- Subtotal por ítem -->
+                        <span class="w-24 text-right font-mono font-medium text-emerald-400">
+                        <!-- Subtotal por fila -->
+                        $ {{ product.price * product.quantity }}
+                        </span>
+                    </div>
+                </article>
+            }
+        </div>
+
+        <!-- Cupones de descuento rápido -->
+        <div class="pt-4 border-t border-slate-800 space-y-2">
+            <label class="text-xs uppercase tracking-wider font-semibold text-slate-400">Aplicar Descuento</label>
+            <div class="flex gap-2">
+                <button (click)="setDiscount(0)"
+                    type="button"
+                    class="px-3 py-1.5 text-xs font-medium rounded-md bg-slate-800 border border-slate-700 hover:bg-slate-700 hover:border-slate-500 transition">
+                    0%
+                </button>
+                <button (click)="setDiscount(10)"
+                    type="button"
+                    class="px-3 py-1.5 text-xs font-medium rounded-md bg-slate-800 border border-slate-700 hover:bg-slate-700 hover:border-slate-500 transition">
+                    10% OFF
+                </button>
+                <button (click)="setDiscount(20)"
+                    type="button"
+                    class="px-3 py-1.5 text-xs font-medium rounded-md bg-slate-800 border border-slate-700 hover:bg-slate-700 hover:border-slate-500 transition">
+                    20% OFF
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Columna Derecha: Resumen Financiero -->
+    <aside class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 h-fit space-y-6 shadow-xl backdrop-blur-sm">
+      <h2 class="text-lg font-bold text-slate-200 border-b border-slate-700 pb-3">
+        Resumen del Pedido
+      </h2>
+
+      <dl class="space-y-3 text-sm">
+        <div class="flex justify-between text-slate-400">
+          <dt>Subtotal base</dt>
+          <dd class="font-mono text-slate-200">
+            <!-- Llamada al computed: subtotal -->
+            $ {{ subtotal() }}
+          </dd>
+        </div>
+
+        <div class="flex justify-between text-amber-400">
+          <dt class="flex items-center gap-1">
+            Descuento 
+            <span class="text-xs px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20 font-mono">
+              <!-- Porcentaje activo -->
+              {{ discountPercent() }} %
+            </span>
+          </dt>
+          <dd class="font-mono">
+            <!-- Llamada al computed: discountAmount -->
+            -$ {{ discountAmount() }}
+          </dd>
+        </div>
+
+        <div class="flex justify-between text-slate-400">
+          <dt>IVA estimado (16%)</dt>
+          <dd class="font-mono text-slate-200">
+            <!-- Llamada al computed: taxAmount -->
+            ${{ taxAmount() }}
+          </dd>
+        </div>
+
+        <div class="border-t border-slate-700 pt-3 flex justify-between items-baseline">
+          <dt class="text-base font-bold text-slate-100">Total a pagar</dt>
+          <dd class="text-xl font-bold font-mono text-emerald-400">
+            <!-- Llamada al computed: total -->
+            $ {{ total() }}MXN
+          </dd>
+        </div>
+      </dl>
+
+      <button 
+        type="button" 
+        class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-semibold rounded-xl transition-all shadow-lg shadow-emerald-900/30">
+        Proceder al Pago
+      </button>
+    </aside>
+
+  </div>
+</div>
