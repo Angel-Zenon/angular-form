@@ -1,16 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import{ Note , ItemPriority, PRIORITIES} from '../../../interfaces/note.interface';
 import { form, required, FormField } from '@angular/forms/signals';
 import { NoteCard } from '../note-card/note-card';
 
 @Component({
-  selector: 'notes-parent',
-  imports: [FormField, NoteCard],
-  templateUrl: './notes-parent.html',
-  styleUrl : './notes-parent.css'
+  selector: 'note-add',
+  imports: [FormField],
+  templateUrl: './note-add.html',
+  styleUrl : './note-add.css'
 })
-export class NotesParent {
-  notes = signal<Note[]>([]);
+export class NoteAdd {
+  
+  // IMPLEMENTAR SERVICIOS
+
+  newNote = output<Note>(); // lo que va a regresar
   readonly priorities = PRIORITIES;
   itemPriority = signal<ItemPriority>('Media'); 
   
@@ -23,7 +26,7 @@ export class NotesParent {
 
   
   registerForm = form(this.registerNoteModel, (schemaPath) => {
-    // validaciones del formulario
+    
     required(schemaPath.description, {message : 'La descripcion es obligatoria'})
     required(schemaPath.priority, {message : 'La prioridad es necesaria'})
     
@@ -32,16 +35,13 @@ export class NotesParent {
   onSubmit(e: Event) {
     e.preventDefault();
     // cargar los datos o pasarlos 
-    const newNote : Note = {
-      id : this.notes().length + 1,
+    const currentNote: Note = {
+      id : Math.floor(Math.random() * 1000),
       description : this.registerNoteModel().description,
       priority : this.registerNoteModel().priority,
-      createdAt :  new Date()
+      createdAt : new Date()
     }
-
-    this.notes.update(
-      (notesList) => [...notesList, newNote]
-    )
+    this.newNote.emit(currentNote); // EMITE LA ACTUAL NOTA
 
     this.registerNoteModel.set(
       {

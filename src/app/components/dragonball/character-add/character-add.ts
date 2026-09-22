@@ -12,7 +12,6 @@ export class CharacterAdd {
   newCharacter = output<Character>(); // emitiremos un personaje, desde este output, es lo contrario a input
 
   
-  
   setName(newName: string) {
     this.name.set(newName);
   }

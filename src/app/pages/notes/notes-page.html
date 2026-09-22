@@ -1,2 +1,5 @@
 <h1>Gestiona notas!</h1>
-<notes-parent/>
+<!-- MANDAR A LLAMAR A notes-add -->
+<note-add (newNote)="addNote($event)" />
+<!-- MANDAR A LLAMAR A note-card -->
+<note-card [notes]="notes()" />
