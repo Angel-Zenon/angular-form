@@ -1,0 +1,18 @@
+<div class="character-add-container">
+    <h3>Agregar {{ name()}} </h3>
+    <input 
+        type="text" 
+        placeholder="Nombre" 
+        [value]="name()"
+        (change)="setName(txtname.value)"
+        #txtname
+    class="">
+    
+    <input type="number" 
+        placeholder="Poder" 
+        [value]="power()"
+        (change)="setPower(+txtpower.value)"
+        #txtpower
+    class="">
+    <button (click)="addCharacter()" class="bg-sky-500 hover:bg-sky-700 py-3 rounded-md mr-10 ml-10">Agregar</button> <!--(click)="addCharacter()" -->
+</div>
