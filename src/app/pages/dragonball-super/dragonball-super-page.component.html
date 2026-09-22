@@ -3,9 +3,9 @@
 <hr>
 <div class="page-container">
         <dragonball-character-add 
-        (newCharacter)="addCharacter($event)"/>
+        (newCharacter)="dragonballService.addCharacter($event)"/>
         <dragonball-character-list
         listName="Listado de Personajes"
-        [characters]="characters()"/>
+        [characters]="dragonballService.characters()"/>
 
 </div>
